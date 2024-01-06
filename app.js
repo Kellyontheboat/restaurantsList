@@ -15,12 +15,15 @@ app.get('/',(req,res) => {
 })
 
 app.get('/restaurants',(req,res) =>{
-  res.render('home', { restaurants: restaurants })
+  res.render('home', { restaurants })
 })
 
 app.get('/restaurants/:id',(req,res) =>{
   const id = req.params.id
-  res.send(`read restaurant:${id}`)
+  const selectedRestaurant = restaurants.find((restaurant) =>
+    restaurant.id.toString() === id
+  )
+  res.render('detail', {selectedRestaurant})
 })
 
 app.listen(port, () => {
