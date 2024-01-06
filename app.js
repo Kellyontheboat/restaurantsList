@@ -11,11 +11,26 @@ app.set('views', './views');
 app.use(express.static('public'))
 
 app.get('/',(req,res) => {
-  res.redirect('/restaurants')
+  res.redirect('/restaurants') 
 })
 
 app.get('/restaurants',(req,res) =>{
   res.render('home', { restaurants })
+})
+
+//RESTful routes:home.hbs/input action=“/search”：
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword?.trim()
+  const filteredRestaurants = keyword
+    ? restaurants.filter((restaurant) =>
+      Object.values(restaurant).some((value) =>
+        typeof value === 'string' &&
+        value.toLowerCase().includes(keyword.toLowerCase())
+      )
+    )
+    : restaurants;
+    
+  res.render('home', { keyword, restaurants: filteredRestaurants })
 })
 
 app.get('/restaurants/:id',(req,res) =>{
