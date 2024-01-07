@@ -27,6 +27,11 @@
 - Input keywords to search for matching restaurant names and categories.
 - View detailed information about a specific restaurant.
 
+## Screen Photos
+![restaurants list](image.png)
+![ detail information of a specific restaurant](image-2.png)
+![search function](image-1.png)
+
 ## How to Use
 1. Access the home page by navigating to [http://localhost:3000](http://localhost:3000).
 2. Browse through the list of restaurants.
